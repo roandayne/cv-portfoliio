@@ -8,11 +8,12 @@ import {
 import Technologies from "../../components/Technologies/Technologies";
 import resumeImage from "/images/resume.png";
 
-const Landing = () => {
+const Landing = ({handleScroll}) => {
   const theme = useTheme();
 
   return (
     <Box
+      id="landing"
       sx={{
         marginTop: { sm: "100px", md: "126px" },
         overflow: "hidden",
@@ -84,10 +85,11 @@ const Landing = () => {
               <Button
                 color="secondary"
                 sx={{ backgroundColor: "primary.main", padding: "20px 40px" }}
+                onClick={handleScroll}
               >
                 Hire Me
               </Button>
-              <Button color="primary">Know more</Button>
+              <Button color="primary" onClick={handleScroll}>Know more</Button>
             </Box>
           </Box>
         </Box>

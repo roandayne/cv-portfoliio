@@ -1,16 +1,12 @@
-import { useState } from "react";
-import Header from "./components/Header/Header";
-import Landing from "./containers/Landing/Landing";
-import Resume from "./containers/Resume/Resume";
+import { Route, Routes } from "react-router-dom";
+import Main from "./containers/Main/Main";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
-    <Header>
-      <Landing />
-      <Resume />
-    </Header>
+    <Routes>
+      <Route path="/" element={<Main />} />
+    </Routes>
+    
   );
 }
 

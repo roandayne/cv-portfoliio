@@ -22,17 +22,18 @@ import Detail from "../../components/Resume/Detail";
 import ResumeDetail from "../../components/Resume/ResumeDetail";
 import { EXPERIENCES } from "../../data/WorkExperience";
 
-const Resume = () => {
-  const handleDownload = () => {
-    const pdfFilePath = "/resume-dino.pdf";
-    const anchorElement = document.createElement("a");
-    anchorElement.href = pdfFilePath;
-    anchorElement.download = "resume-dino.pdf";
-    anchorElement.click();
-  };
+export const handleDownload = () => {
+  const pdfFilePath = "/resume-dino.pdf";
+  const anchorElement = document.createElement("a");
+  anchorElement.href = pdfFilePath;
+  anchorElement.download = "resume-dino.pdf";
+  anchorElement.click();
+};
 
+const Resume = ({resumeRef}) => {
   return (
     <Box
+      ref={resumeRef}
       sx={{
         paddingLeft: { sm: "100px", lg: "150px" },
         width: "100vw",

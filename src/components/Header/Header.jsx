@@ -13,11 +13,12 @@ import ListItemText from "@mui/material/ListItemText";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
+import { handleDownload } from "../../containers/Resume/Resume";
 
 const drawerWidth = 240;
 const navItems = ["Resume", "Contact"];
 
-const Header = ({ children, window }) => {
+const Header = ({ children, window, handleScroll }) => {
   // const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -28,7 +29,7 @@ const Header = ({ children, window }) => {
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
       <Typography variant="h6" sx={{ my: 2 }}>
-        MUI
+        Roan
       </Typography>
       <Divider />
       <List>
@@ -45,6 +46,14 @@ const Header = ({ children, window }) => {
 
   const container =
     window !== undefined ? () => window().document.body : undefined;
+
+    const handleNavItemClick = (item) => {
+      if (item === "Resume") {
+        handleDownload()
+      } else {
+        handleScroll()
+      }
+    }
 
   return (
     <Box sx={{ display: "flex", width: "100vw" }}>
@@ -103,6 +112,7 @@ const Header = ({ children, window }) => {
                 <Button
                   color="primary"
                   key={item}
+                  onClick={() => handleNavItemClick(item)}
                   sx={
                     item === "Contact"
                       ? {

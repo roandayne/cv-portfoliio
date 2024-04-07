@@ -4,7 +4,7 @@ export const theme = createTheme({
   palette: {
     common: {
       black: "#000000",
-      white: "#ffffff",
+      white: "#FFECDB",
     },
     primary: {
       main: "#AA4465",
@@ -31,13 +31,13 @@ export const theme = createTheme({
       fontFamily: "'Fjalla One', 'sans-serif'",
       fontSize: "4.8rem",
       fontWeight: 800,
-      color: "#002147",
+      color: "",
     },
     h2: {
       fontFamily: "'Fjalla One', 'sans-serif'",
       fontSize: "4rem",
       fontWeight: 800,
-      color: "#002147",
+      // color: "#002147",
       "@media (max-width:768px)": {
         fontSize: "2.875rem",
       },
@@ -46,7 +46,7 @@ export const theme = createTheme({
       fontFamily: "'Fjalla One', 'sans-serif'",
       fontSize: "3rem",
       fontWeight: 700,
-      color: "#002147",
+      // color: "#002147",
       "@media (max-width:768px)": {
         fontSize: "1.875rem",
       },
@@ -55,7 +55,7 @@ export const theme = createTheme({
       fontFamily: "'Fjalla One', 'sans-serif'",
       fontSize: "2.0rem",
       fontWeight: 700,
-      color: "#002147",
+      // color: "#002147",
       "@media (max-width:768px)": {
         fontSize: "1.8rem",
       },
@@ -64,7 +64,7 @@ export const theme = createTheme({
       fontFamily: "'Fjalla One', 'sans-serif'",
       fontSize: "1.8rem",
       fontWeight: 700,
-      color: "#002147",
+      // color: "#002147",
       "@media (max-width:768px)": {
         fontSize: "1.6rem",
       },
@@ -73,7 +73,7 @@ export const theme = createTheme({
       fontFamily: "'Fjalla One', 'sans-serif'",
       fontSize: "1.4rem",
       fontWeight: 700,
-      color: "#002147",
+      // color: "#002147",
       "@media (max-width:768px)": {
         fontSize: "1.2rem",
       },

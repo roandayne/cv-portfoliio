@@ -1,110 +1,95 @@
-import { Box, Button, Typography } from "@mui/material";
-import React from "react";
+import {
+  Box,
+  Button,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import Technologies from "../../components/Technologies/Technologies";
 import resumeImage from "/images/resume.png";
 
-const circle = {
-  position: "absolute",
-  width: 200,
-  height: 200,
-  borderRadius: "50%",
-  mixBlendMode: "multiply",
-  filter: "blur(80px)",
-  zIndex: 1,
-};
-
-const circle1 = {
-  position: "relative",
-  bottom: -150,
-  left: 40,
-  background: "radial-gradient(circle, #FF5733, #FFC300)",
-};
-
-const circle2 = {
-  bottom: 100,
-  right: 30,
-  background: "radial-gradient(circle, #900C3F, #FF5733)",
-};
-
 const Landing = () => {
+  const theme = useTheme();
+
   return (
     <Box
       sx={{
-        backgroundColor: "secondary.main",
+        marginTop: { sm: "100px", md: "126px" },
+        overflow: "hidden",
         width: "100vw",
-        height: "calc(100vh - 88px)",
-        padding: "0",
-        gap: "20px",
-        display: "flex",
-        flexDirection: "column",
+        backgroundColor: "secondary.main",
       }}
     >
-      <Typography
-        color="primary"
-        variant="h1"
-        sx={{ paddingTop: "100px", textAlign: "center", fontSize: "150px" }}
-      >
-        Hi! I'm Roan Dino.
-      </Typography>
       <Box
         sx={{
           display: "flex",
-          flexDirection: "row",
-          gap: "80px",
-
-          alignItems: "flex-start",
+          gap: "20px",
+          paddingLeft: { sm: "100px", lg: "150px" },
+          backgroundImage: `url(${resumeImage})`,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "contain",
+          backgroundPosition: "bottom right -100px",
         }}
       >
         <Box
           sx={{
-            width: "50vw",
-            textAlign: "left",
             display: "flex",
             flexDirection: "column",
-            gap: "80px",
-            padding: "100px 100px 50px 150px",
+            paddingTop: "80px",
+            width: { sm: "50vw", lg: "40vw" },
+            gap: "30px",
           }}
         >
-          <Typography
-            variant="body1"
-            sx={{ fontWeight: 600, fontSize: "24px" }}
-          >
-            Harnessing 4+ years in IT as a fullstack developer, QA, project
-            manager.
-          </Typography>
-          <Technologies />
-          <Box sx={{ display: "flex", gap: "10px" }}>
-            <Button
-              color="secondary"
-              sx={{ backgroundColor: "primary.main", padding: "20px 60px" }}
+          <Box sx={{ display: "flex", flexDirection: "column", gap: "0" }}>
+            <Typography
+              color="primary"
+              variant="h1"
+              sx={{
+                textAlign: "left",
+                fontSize: { md: "90px" },
+              }}
             >
-              Hire Me
-            </Button>
-            <Button color="primary">Know more</Button>
+              Hi!
+            </Typography>
+            <Typography
+              color="primary"
+              variant="h1"
+              sx={{
+                textAlign: "left",
+                fontSize: { md: "90px" },
+              }}
+            >
+              Roan Dino.
+            </Typography>
           </Box>
-        </Box>
-        <Box sx={{ width: "50vw", height: "100%" }}>
           <Box
             sx={{
-              ...circle,
-              ...circle1,
+              display: "flex",
+              flexDirection: "column",
+              gap: "40px",
             }}
-          />
-          <Box
-            sx={{
-              ...circle,
-              ...circle2,
-            }}
-          />
-          <img
-            src={resumeImage}
-            style={{
-              height: "624px",
-              position: "absolute",
-              bottom: 0,
-              zIndex: 10,
-            }}
-          />
+          >
+            <Typography variant="body1" sx={{ fontSize: "24px" }}>
+              Harnessing 4+ years in IT as a fullstack developer, QA, project
+              manager.
+            </Typography>
+            <Technologies />
+            <Box
+              sx={{
+                display: "flex",
+                gap: "20px",
+                paddingBottom: "50px",
+              }}
+            >
+              <Button
+                color="secondary"
+                sx={{ backgroundColor: "primary.main", padding: "20px 40px" }}
+              >
+                Hire Me
+              </Button>
+              <Button color="primary">Know more</Button>
+            </Box>
+          </Box>
         </Box>
       </Box>
     </Box>

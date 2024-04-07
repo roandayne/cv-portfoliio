@@ -53,7 +53,7 @@ const Header = ({ children, window }) => {
         component="nav"
         sx={{
           backgroundColor: "secondary.main",
-          padding: { sm: "24px 80px", md: "24px 150px" },
+          padding: { sm: "24px 100px", lg: "24px 150px" },
         }}
       >
         <Toolbar
@@ -91,7 +91,7 @@ const Header = ({ children, window }) => {
                 display: { xs: "none", sm: "block" },
               }}
             >
-              Roan.
+              Roan
             </Typography>
             <Box
               sx={{
@@ -104,11 +104,13 @@ const Header = ({ children, window }) => {
                   color="primary"
                   key={item}
                   sx={
-                    item === "Contact" && {
-                      border: (theme) =>
-                        `4px solid ${theme.palette.primary.main}`,
-                      padding: "10px 20px",
-                    }
+                    item === "Contact"
+                      ? {
+                          border: (theme) =>
+                            `4px solid ${theme.palette.primary.main}`,
+                          padding: "10px 20px",
+                        }
+                      : {}
                   }
                 >
                   {item}
@@ -138,8 +140,8 @@ const Header = ({ children, window }) => {
           {drawer}
         </Drawer>
       </nav>
-      <Box component="main" pt={3}>
-        <Toolbar />
+      <Box component="main">
+        {/* <Toolbar /> */}
         {children}
       </Box>
     </Box>

@@ -37,6 +37,7 @@ const Resume = () => {
         paddingLeft: { sm: "100px", lg: "150px" },
         width: "100vw",
         display: "flex",
+        backgroundColor: "background.paper"
       }}
     >
       <Box

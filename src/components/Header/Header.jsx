@@ -83,18 +83,6 @@ const Header = ({ children, window, handleScroll }) => {
                         ? {
                             border: (theme) => `4px solid ${theme.palette.primary.main}`,
                             padding: '10px 20px',
-                            animation: 'pulse 1s infinite',
-                            '@keyframes pulse': {
-                              '0%': {
-                                transform: 'scale(1)',
-                              },
-                              '50%': {
-                                transform: 'scale(1.1)',
-                              },
-                              '100%': {
-                                transform: 'scale(1)',
-                              },
-                            },
                           }
                         : {}
                     }

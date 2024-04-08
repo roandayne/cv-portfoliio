@@ -1,22 +1,22 @@
-import { createTheme } from "@mui/material";
+import { createTheme } from '@mui/material';
 
 export const theme = createTheme({
   palette: {
     common: {
-      black: "#000000",
-      white: "#FFECDB",
+      black: '#000000',
+      white: '#FFECDB',
     },
     primary: {
-      main: "#AA4465",
-      contrastText: "FFECDB",
+      main: '#AA4465',
+      contrastText: '#FFECDB',
     },
     secondary: {
-      main: "#FFECDB",
-      contrastText: "#AA4465",
+      main: '#FFECDB',
+      contrastText: '#AA4465',
     },
     background: {
-      paper: "#FFFCF7", // #a8dadc
-      default: "#FFFCF7",
+      paper: '#FFFCF7',
+      default: '#FFFCF7',
     },
   },
   typography: {
@@ -29,77 +29,77 @@ export const theme = createTheme({
     fontWeightBold: 700,
     h1: {
       fontFamily: "'Fjalla One', 'sans-serif'",
-      fontSize: "4.8rem",
+      fontSize: '4.8rem',
       fontWeight: 800,
-      color: "",
+      color: '',
     },
     h2: {
       fontFamily: "'Fjalla One', 'sans-serif'",
-      fontSize: "4rem",
+      fontSize: '4rem',
       fontWeight: 800,
       // color: "#002147",
-      "@media (max-width:768px)": {
-        fontSize: "2.875rem",
+      '@media (max-width:768px)': {
+        fontSize: '2.875rem',
       },
     },
     h3: {
       fontFamily: "'Fjalla One', 'sans-serif'",
-      fontSize: "3rem",
+      fontSize: '3rem',
       fontWeight: 700,
       // color: "#002147",
-      "@media (max-width:768px)": {
-        fontSize: "1.875rem",
+      '@media (max-width:768px)': {
+        fontSize: '1.875rem',
       },
     },
     h4: {
       fontFamily: "'Fjalla One', 'sans-serif'",
-      fontSize: "2.0rem",
+      fontSize: '2.0rem',
       fontWeight: 700,
       // color: "#002147",
-      "@media (max-width:768px)": {
-        fontSize: "1.8rem",
+      '@media (max-width:768px)': {
+        fontSize: '1.8rem',
       },
     },
     h5: {
       fontFamily: "'Fjalla One', 'sans-serif'",
-      fontSize: "1.8rem",
+      fontSize: '1.8rem',
       fontWeight: 700,
       // color: "#002147",
-      "@media (max-width:768px)": {
-        fontSize: "1.6rem",
+      '@media (max-width:768px)': {
+        fontSize: '1.6rem',
       },
     },
     h6: {
       fontFamily: "'Fjalla One', 'sans-serif'",
-      fontSize: "1.4rem",
+      fontSize: '1.4rem',
       fontWeight: 700,
       // color: "#002147",
-      "@media (max-width:768px)": {
-        fontSize: "1.2rem",
+      '@media (max-width:768px)': {
+        fontSize: '1.2rem',
       },
     },
     body1: {
       fontFamily: "'Roboto Slab', 'sans-serif'",
-      fontSize: "1.25rem",
+      fontSize: '1.25rem',
       fontWeight: 300,
-      "@media (max-width:768px)": {
-        fontSize: "1rem",
+      '@media (max-width:768px)': {
+        fontSize: '1rem',
       },
     },
     body2: {
       fontFamily: "'Roboto Slab', 'sans-serif'",
-      fontSize: "1rem",
+      fontSize: '1rem',
       fontWeight: 700,
-      "@media (max-width:768px)": {
-        fontSize: "0.875rem",
+      '@media (max-width:768px)': {
+        fontSize: '0.875rem',
       },
     },
     subtitle1: {
       fontFamily: "'Roboto Slab', 'sans-serif'",
-      fontSize: "0.875rem",
+      fontSize: '0.875rem',
       fontWeight: 300,
-      "@media (max-width:768px)": {
-        fontSize: "0.750rem",
+      '@media (max-width:768px)': {
+        fontSize: '0.750rem',
       },
     },
   },
@@ -109,16 +109,16 @@ export const theme = createTheme({
         root: {
           margin: 0,
           padding: 0,
-          boxSizing: "border-box",
-          fontFamily: "inherit",
+          boxSizing: 'border-box',
+          fontFamily: 'inherit',
         },
       },
     },
     MuiBox: {
       styleOverrides: {
         root: {
-          padding: "0",
-          margin: "0",
+          padding: '0',
+          margin: '0',
         },
       },
     },

@@ -1,25 +1,13 @@
-import { Box, Icon, Typography } from "@mui/material";
-import React from "react";
+import { Box, Icon, Typography } from '@mui/material';
+import React from 'react';
 
-const Detail = ({
-  icon,
-  text,
-  description,
-  description2,
-  children,
-  color = "common.white",
-}) => {
+const Detail = ({ icon, text, description, description2, children, color = 'common.white' }) => {
   return (
-    <Box sx={{ display: "flex", flexDirection: "column", color: color }}>
+    <Box sx={{ display: 'flex', flexDirection: 'column', color: color }}>
       <Box display="flex" alignItems="center" color={color}>
-        <Icon component={icon} sx={{ marginRight: "8px" }} />
+        <Icon component={icon} sx={{ marginRight: '8px' }} />
         <Box>
-          <Typography
-            color={color}
-            variant={children ? "h6" : "body1"}
-            display="flex"
-            alignItems="center"
-          >
+          <Typography color={color} variant={children ? 'h6' : 'body1'} display="flex" alignItems="center">
             {text}
           </Typography>
           {description && (

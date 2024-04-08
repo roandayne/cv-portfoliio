@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { Fab } from '@mui/material';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import { Fab } from '@mui/material';
+import React, { useEffect, useState } from 'react';
 
 const BackToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   const handleScroll = () => {
-    if (window.pageYOffset > 300) { // Adjust this value to control when the button appears
+    if (window.pageYOffset > 300) {
       setIsVisible(true);
     } else {
       setIsVisible(false);
@@ -16,7 +16,7 @@ const BackToTop = () => {
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth'
+      behavior: 'smooth',
     });
   };
 
@@ -30,7 +30,7 @@ const BackToTop = () => {
   return (
     <div style={{ position: 'fixed', bottom: 20, right: 20, display: isVisible ? 'block' : 'none' }}>
       <Fab color="primary" size="medium" aria-label="scroll back to top" onClick={scrollToTop}>
-        <KeyboardArrowUpIcon sx={{color: "common.white"}} />
+        <KeyboardArrowUpIcon sx={{ color: 'common.white' }} />
       </Fab>
     </div>
   );

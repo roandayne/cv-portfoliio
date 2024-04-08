@@ -82,7 +82,22 @@ const Landing = ({ handleScroll, isPortrait }) => {
             >
               <Button
                 color="secondary"
-                sx={{ backgroundColor: 'primary.main', padding: '20px 40px' }}
+                sx={{
+                  backgroundColor: 'primary.main',
+                  padding: '20px 40px',
+                  animation: 'pulse 1s infinite',
+                  '@keyframes pulse': {
+                    '0%': {
+                      transform: 'scale(1)',
+                    },
+                    '50%': {
+                      transform: 'scale(1.1)',
+                    },
+                    '100%': {
+                      transform: 'scale(1)',
+                    },
+                  },
+                }}
                 onClick={handleScroll}
               >
                 Hire Me

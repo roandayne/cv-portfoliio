@@ -27,7 +27,7 @@ const Resume = ({ resumeRef, isPortrait }) => {
     <Box
       ref={resumeRef}
       sx={{
-        paddingLeft: { sm: '100px', lg: '150px' },
+        ...(isPortrait ? {} : { paddingLeft: { sm: '100px', lg: '150px' } }),
         width: '100vw',
         display: 'flex',
         backgroundColor: 'background.paper',
@@ -36,7 +36,7 @@ const Resume = ({ resumeRef, isPortrait }) => {
     >
       <Box
         sx={{
-          width: { xs: isPortrait ? '100vw' : '40vw', sx: '40vw' },
+          width: { xs: isPortrait ? '100%' : '40vw', sx: '40vw' },
           backgroundColor: 'primary.main',
           padding: '80px 20px',
           display: 'flex',

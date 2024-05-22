@@ -2,7 +2,7 @@ import { Box, Button, Typography, useTheme } from '@mui/material';
 import Technologies from '../../components/Technologies/Technologies';
 import resumeImage from '/images/resume.png';
 
-const Landing = ({ handleScroll, isPortrait }) => {
+const Landing = ({ handleResumeScroll, handleIntroScroll, isPortrait }) => {
   const theme = useTheme();
 
   return (
@@ -98,12 +98,12 @@ const Landing = ({ handleScroll, isPortrait }) => {
                     },
                   },
                 }}
-                onClick={handleScroll}
+                onClick={handleResumeScroll}
               >
                 Hire Me
               </Button>
-              <Button color="primary" onClick={handleScroll}>
-                Know more
+              <Button color="primary" onClick={handleIntroScroll}>
+                Video Intro
               </Button>
             </Box>
           </Box>

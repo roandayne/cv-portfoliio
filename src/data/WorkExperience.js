@@ -6,15 +6,15 @@ export const EXPERIENCES = [
     descriptions: [
       {
         icon: '',
-        text: 'Implemented feature enhancements and resolved bugs for aclient project utilizing Ruby on Rails and React technologies.',
+        text: 'Implemented feature enhancements and resolved bugs for a client project utilizing Ruby on Rails and React technologies.',
       },
       {
         icon: '',
-        text: 'Led project management, quality assurance, and development efforts for a Laravel, React, and TypeScript project. The initiative is geared towards assisting students and scholarship providers in posting and managing scholarship opportunities and applications.',
+        text: "Led project management, quality assurance, and development efforts for a Laravel, React, and TypeScript project.The project's primary objective was to facilitate seamless connections between homeowners and short-term workers.",
       },
       {
         icon: '',
-        text: "Spearheaded the project management, quality assurance, and development efforts for a cutting-edge initiative utilizing Ruby on Rails, React, and TypeScript. The project's primary objective was to facilitate seamless connections between homeowners and short-term workers.",
+        text: 'Spearheaded the project management, quality assurance, and development efforts for a cutting-edge initiative utilizing Ruby on Rails, React, and TypeScript.  The initiative is geared towards assisting students and scholarship providers in posting and managing scholarship opportunities and applications.',
       },
     ],
   },

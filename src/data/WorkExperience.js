@@ -1,5 +1,24 @@
 export const EXPERIENCES = [
   {
+    jobTitle: 'Golang Developer',
+    company: 'Freelance',
+    year: 'Aug 2024 - present',
+    descriptions: [
+      {
+        icon: '',
+        text: 'Developed report generation for transactions of a blockchain.',
+      },
+      {
+        icon: '',
+        text: 'Helped in developing syncers for transactions of a blockchain.',
+      },
+      {
+        icon: '',
+        text: 'Developed a web app using React and Typescript consuming API of a blockchain for recursive staking.',
+      },
+    ],
+  },
+  {
     jobTitle: 'Web Developer',
     company: 'CRH Ph/Sence1 Inc | Philippines',
     year: 'Jan 2023 - present',

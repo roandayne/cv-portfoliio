@@ -8,7 +8,6 @@ import Typography from '@mui/material/Typography';
 import * as React from 'react';
 import { handleDownload } from '../../containers/Resume/Resume';
 
-const drawerWidth = 240;
 const navItems = ['Resume', 'Contact'];
 
 const Header = ({ children, window, handleScroll }) => {
@@ -95,7 +94,7 @@ const Header = ({ children, window, handleScroll }) => {
           )}
         </Toolbar>
       </AppBar>
-      <Box component="main">{children}</Box>
+      <Box component="main" sx={{backgroundColor: 'secondary.main'}}>{children}</Box>
     </Box>
   );
 };

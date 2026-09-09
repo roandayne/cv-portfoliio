@@ -1,0 +1,103 @@
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: color-mix(in srgb, var(--paper-raised) 88%, transparent);
+  backdrop-filter: saturate(160%) blur(10px);
+  border-bottom: 1px solid var(--rule-faint);
+  transition: background var(--dur) var(--ease), border-color var(--dur) var(--ease),
+    color var(--dur) var(--ease);
+}
+
+/* Over the hero the bar sits on the dark ground and carries no rule. */
+.nav.is-dark {
+  background: var(--dark);
+  backdrop-filter: none;
+  border-bottom-color: transparent;
+  color: var(--dark-ink);
+}
+
+.nav__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-5);
+  padding-block: var(--s-4);
+}
+
+.nav__name {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: var(--font-display);
+  font-size: var(--fs-md);
+  font-weight: 600;
+  letter-spacing: var(--tracking-tight);
+  text-decoration: none;
+  color: inherit;
+}
+
+/* The mark is set from the wordmark's own size, so the two stay in step. */
+.nav__mark {
+  height: 1.05em;
+  width: auto;
+  flex: none;
+}
+
+.nav__links {
+  display: flex;
+  gap: var(--s-5);
+}
+
+.nav__links a,
+.nav__cta {
+  font-family: var(--font-display);
+  font-size: var(--fs-base);
+  text-decoration: none;
+  color: var(--ink-muted);
+  transition: color var(--dur) var(--ease);
+}
+
+.nav__links a:hover,
+.nav__cta:hover {
+  color: var(--ink);
+}
+
+.nav.is-dark .nav__links a,
+.nav.is-dark .nav__cta {
+  color: var(--dark-muted);
+}
+
+.nav.is-dark .nav__links a:hover,
+.nav.is-dark .nav__cta:hover {
+  color: var(--dark-ink);
+}
+
+.nav__cta {
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-pill);
+  padding: 0.4rem 0.95rem;
+}
+
+.nav.is-dark .nav__cta {
+  border-color: rgba(255, 255, 255, 0.28);
+}
+
+@media (max-width: 46rem) {
+  .nav__cta {
+    display: none;
+  }
+}
+
+@media (max-width: 34rem) {
+  .nav__inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--s-2);
+  }
+
+  .nav__links {
+    gap: var(--s-4);
+    flex-wrap: wrap;
+  }
+}

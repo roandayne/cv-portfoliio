@@ -1,0 +1,108 @@
+<!doctype html><body style="margin:0"><pre id="out">waiting</pre>
+<script>
+const ROUTES = ['/'];
+const out = [];
+
+// Parses rgb()/rgba() and color(srgb ...) into 0-1 channels plus alpha.
+function parse(c) {
+  const n = (c.match(/-?\d*\.?\d+/g) || []).map(Number);
+  if (/^color\(/.test(c)) return { r: n[0], g: n[1], b: n[2], a: n.length > 3 ? n[3] : 1 };
+  return { r: n[0] / 255, g: n[1] / 255, b: n[2] / 255, a: n.length > 3 ? n[3] : 1 };
+}
+function lum(c) {
+  const p = typeof c === 'string' ? parse(c) : c;
+  const f = (v) => (v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4));
+  return 0.2126 * f(p.r) + 0.7152 * f(p.g) + 0.0722 * f(p.b);
+}
+function ratio(a, b) {
+  const [x, y] = [lum(a), lum(b)].sort((m, n) => n - m);
+  return (x + 0.05) / (y + 0.05);
+}
+// Composites every translucent background up the ancestor chain.
+function bgOf(el, win) {
+  const layers = [];
+  let n = el;
+  while (n) {
+    const p = parse(win.getComputedStyle(n).backgroundColor);
+    if (p.a > 0) {
+      layers.push(p);
+      if (p.a === 1) break;
+    }
+    n = n.parentElement;
+  }
+  layers.push({ r: 1, g: 1, b: 1, a: 1 });
+  let out = layers[layers.length - 1];
+  for (let i = layers.length - 2; i >= 0; i -= 1) {
+    const t = layers[i];
+    out = {
+      r: t.r * t.a + out.r * (1 - t.a),
+      g: t.g * t.a + out.g * (1 - t.a),
+      b: t.b * t.a + out.b * (1 - t.a),
+      a: 1,
+    };
+  }
+  return out;
+}
+
+function check(url) {
+  return new Promise((res) => {
+    const f = document.createElement('iframe');
+    f.style.cssText = 'width:1280px;height:1000px;border:0;position:absolute;left:-9999px';
+    f.src = url;
+    f.onload = () => setTimeout(() => {
+      const d = f.contentDocument, w = f.contentWindow;
+      out.push('=== ' + url + ' ===');
+
+      // Heading hierarchy
+      const hs = [...d.querySelectorAll('h1,h2,h3,h4,h5,h6')].map((h) => +h.tagName[1]);
+      out.push('h1 count: ' + hs.filter((n) => n === 1).length + ' | order: ' + hs.join(','));
+      let prev = 0, skips = [];
+      for (const lvl of hs) { if (prev && lvl > prev + 1) skips.push(prev + '->' + lvl); prev = lvl; }
+      out.push('skipped levels: ' + (skips.length ? skips.join(' ') : 'none'));
+
+      // Landmarks
+      out.push('landmarks: main=' + d.querySelectorAll('main').length +
+        ' nav=' + d.querySelectorAll('nav').length +
+        ' header=' + d.querySelectorAll('header').length +
+        ' footer=' + d.querySelectorAll('footer').length);
+
+      // Images and links
+      const noAlt = [...d.querySelectorAll('img')].filter((i) => !i.hasAttribute('alt')).length;
+      const svgNoLabel = [...d.querySelectorAll('svg[role="img"]')]
+        .filter((s) => !s.getAttribute('aria-label') && !s.querySelector('title')).length;
+      const emptyLinks = [...d.querySelectorAll('a')]
+        .filter((a) => !a.textContent.trim() && !a.getAttribute('aria-label')).length;
+      const noHref = [...d.querySelectorAll('a')].filter((a) => !a.getAttribute('href')).length;
+      out.push(`img missing alt: ${noAlt} | svg[role=img] unlabelled: ${svgNoLabel} | empty links: ${emptyLinks} | links without href: ${noHref}`);
+
+      // Text contrast, sampled per distinct colour/size combination
+      const seen = new Map();
+      for (const el of d.querySelectorAll('body *')) {
+        if (!el.firstChild || el.firstChild.nodeType !== 3 || !el.textContent.trim()) continue;
+        const st = w.getComputedStyle(el);
+        const size = parseFloat(st.fontSize);
+        const weight = +st.fontWeight;
+        const bg = bgOf(el, w);
+        const key = st.color + '|' + Math.round(size) + '|' + weight + '|' +
+          [bg.r, bg.g, bg.b].map((v) => Math.round(v * 255)).join(',');
+        if (seen.has(key)) continue;
+        const r = ratio(st.color, bg);
+        const large = size >= 24 || (size >= 18.66 && weight >= 700);
+        const need = large ? 3 : 4.5;
+        seen.set(key, true);
+        if (r < need) {
+          out.push(`  CONTRAST FAIL ${r.toFixed(2)} (need ${need}) ${st.color} ${Math.round(size)}px/${weight} "${el.textContent.trim().slice(0, 34)}"`);
+        }
+      }
+      out.push('  contrast combinations checked: ' + seen.size);
+      f.remove();
+      res();
+    }, 700);
+    document.body.appendChild(f);
+  });
+}
+(async () => {
+  for (const r of ROUTES) await check(r);
+  document.getElementById('out').textContent = out.join('\n');
+})();
+</script>

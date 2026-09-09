@@ -1,0 +1,93 @@
+/* Design tokens. Every value used in the site resolves to one of these. */
+
+:root {
+  color-scheme: light;
+
+  /* --- Colour -------------------------------------------------------
+     Paper and graphite, as a drawing on a sheet. The accent is semantic:
+     it marks what is currently selected or active, nothing else. */
+  --paper: #f4f5f5;
+  --paper-raised: #ffffff;
+  --paper-sunk: #eceeee;
+
+  /* Dark surfaces: the hero and the contact band. */
+  --dark: #0c0e10;
+  --dark-raised: #14181b;
+  --dark-ink: #f2f4f5;
+  --dark-muted: #9aa3a9;
+  --dark-rule: rgba(255, 255, 255, 0.13);
+  --accent-bright: #56a8ff;
+  --ink: #1b1d1f;
+  --ink-muted: #5c6063;
+  --ink-faint: #676b6f;
+  --rule: #d3d6d6;
+  --rule-faint: #e2e4e4;
+  --accent: #0f4c81;
+  /* The monogram's blue. It belongs to the mark, not to the interface. */
+  --brand-blue: #1668f5;
+  --accent-soft: #e8eff6;
+
+  /* --- Line weight --------------------------------------------------
+     Rank is encoded in stroke width, as in a drawing set. */
+  --lw-hair: 1px solid var(--rule-faint);
+  --lw-mid: 1px solid var(--rule);
+  --lw-cut: 2px solid var(--ink);
+
+  /* --- Type --------------------------------------------------------- */
+  --font-display: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+  --font-body: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+
+  --fs-xs: 0.75rem;
+  --fs-sm: 0.8125rem;
+  --fs-base: 0.9375rem;
+  --fs-body: 1.0625rem;
+  --fs-md: 1.1875rem;
+  --fs-lg: 1.4375rem;
+  --fs-xl: 1.875rem;
+  --fs-2xl: 2.5rem;
+  --fs-display: clamp(2.25rem, 1.3rem + 3.6vw, 4rem);
+
+  --lh-tight: 1.08;
+  --lh-snug: 1.28;
+  --lh-normal: 1.5;
+  --lh-prose: 1.62;
+
+  --tracking-tight: -0.022em;
+  --tracking-label: 0.07em;
+
+  /* --- Space -------------------------------------------------------- */
+  --s-1: 0.25rem;
+  --s-2: 0.5rem;
+  --s-3: 0.75rem;
+  --s-4: 1rem;
+  --s-5: 1.5rem;
+  --s-6: 2rem;
+  --s-7: 3rem;
+  --s-8: 4rem;
+  --s-9: 6rem;
+  --s-10: 8rem;
+
+  --section-y: clamp(3.5rem, 7vw, 6.5rem);
+
+  /* --- Layout ------------------------------------------------------- */
+  --page-max: 78rem;
+  --page-pad: clamp(1.25rem, 5vw, 4rem);
+  --spine-w: 8.5rem;
+  --measure: 62ch;
+
+  --focus-ring: 2px solid var(--accent);
+  --focus-offset: 3px;
+
+  --radius: 10px;
+  --radius-lg: 16px;
+  --radius-pill: 999px;
+
+  --ease: cubic-bezier(0.2, 0, 0, 1);
+  --dur: 220ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur: 1ms;
+  }
+}

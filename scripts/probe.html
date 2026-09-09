@@ -1,0 +1,31 @@
+<!doctype html><body style="margin:0"><pre id="out">waiting</pre>
+<script>
+const ROUTES = ['/'];
+const WIDTHS = [320, 375, 414, 768, 1024, 1440];
+const out = [];
+function check(url, w) {
+  return new Promise((res) => {
+    const f = document.createElement('iframe');
+    f.style.cssText = `width:${w}px;height:1200px;border:0;position:absolute;left:-9999px`;
+    f.src = url;
+    f.onload = () => setTimeout(() => {
+      const d = f.contentDocument;
+      const vw = d.documentElement.clientWidth;
+      const sw = d.documentElement.scrollWidth;
+      const bad = [];
+      for (const el of d.querySelectorAll('body *')) {
+        const r = el.getBoundingClientRect();
+        if (r.right > vw + 1) bad.push(el.tagName + '.' + (el.className.baseVal ?? el.className));
+      }
+      out.push(`${w.toString().padStart(4)} ${url} vw=${vw} sw=${sw} ${sw > vw ? 'SCROLL!' : 'ok'} ${bad.slice(0,3).join(' | ')}`);
+      f.remove();
+      res();
+    }, 350);
+    document.body.appendChild(f);
+  });
+}
+(async () => {
+  for (const r of ROUTES) for (const w of WIDTHS) await check(r, w);
+  document.getElementById('out').textContent = out.join('\n');
+})();
+</script>

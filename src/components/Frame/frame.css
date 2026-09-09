@@ -1,0 +1,98 @@
+.frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 11;
+}
+
+.frame__drawing,
+.frame__canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.frame__drawing {
+  transition: opacity 700ms var(--ease);
+}
+
+.frame__drawing.is-replaced {
+  opacity: 0;
+}
+
+.frame__canvas {
+  opacity: 0;
+  transition: opacity 700ms var(--ease);
+  touch-action: pan-y;
+}
+
+.frame__canvas.is-live {
+  opacity: 1;
+}
+
+/* Affordance badge, bottom right of the model. */
+.frame__hint {
+  position: absolute;
+  right: 0;
+  bottom: var(--s-2);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  margin: 0;
+  padding: 0.4rem 0.8rem;
+  border: 1px solid var(--dark-rule);
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(6px);
+  font-family: var(--font-display);
+  font-size: var(--fs-xs);
+  color: var(--dark-muted);
+  pointer-events: none;
+}
+
+.frame__hintDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent-bright);
+}
+
+/* Element readout, bottom left. */
+.frame__readout {
+  position: absolute;
+  left: 0;
+  bottom: var(--s-2);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--fs-xs);
+  min-height: 2.2em;
+}
+
+.frame__readoutKind {
+  color: var(--accent-bright);
+  font-weight: 600;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}
+
+.frame__readoutRef {
+  color: var(--dark-ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.frame__readoutIdle {
+  color: var(--dark-muted);
+}
+
+@media (max-width: 60rem) {
+  .frame {
+    aspect-ratio: 4 / 3;
+  }
+
+  .frame__hint {
+    display: none;
+  }
+}

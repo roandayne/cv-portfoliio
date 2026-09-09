@@ -1,0 +1,41 @@
+.footer {
+  background: var(--dark);
+  color: var(--dark-muted);
+  border-top: 1px solid var(--dark-rule);
+}
+
+.footer__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s-3) var(--s-6);
+  padding-block: var(--s-5);
+  font-family: var(--font-display);
+  font-size: var(--fs-xs);
+}
+
+.footer__id {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  max-width: none;
+}
+
+.footer__mark {
+  height: 1.6em;
+  width: auto;
+  flex: none;
+  color: var(--dark-ink);
+}
+
+.footer__id strong {
+  color: var(--dark-ink);
+  font-weight: 600;
+}
+
+/* Inherits the footer's dark-surface colour rather than a light-theme one. */
+.footer__copy {
+  color: var(--dark-muted);
+  font-variant-numeric: tabular-nums;
+}

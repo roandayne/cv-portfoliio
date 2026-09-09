@@ -1,0 +1,116 @@
+/* A layer across the whole hero, above the copy, so shards carry over the type
+   the way they do over the page they were modelled on. It takes no pointer
+   events: the links underneath keep their clicks, and the scene listens on the
+   section instead. */
+.cosmos {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.cosmos__canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 700ms var(--ease);
+}
+
+.cosmos__canvas.is-live {
+  opacity: 1;
+}
+
+/* The drawing is framed over the right-hand column, where the camera puts the
+   orb, so the handover from drawing to scene does not move it. */
+.cosmos__drawing {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 6%;
+  width: 52%;
+  height: 100%;
+  transition: opacity 700ms var(--ease);
+}
+
+.cosmos__drawing.is-replaced {
+  opacity: 0;
+}
+
+/* Instruments, on the hero's own measure. */
+.cosmos__hud {
+  position: absolute;
+  right: 0;
+  bottom: clamp(1.25rem, 3vw, 2.25rem);
+  left: 0;
+}
+
+.cosmos__hudInner {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Affordance, bottom right of the hero. */
+.cosmos__action {
+  display: inline-flex;
+  pointer-events: auto;
+  align-items: center;
+  gap: var(--s-2);
+  margin: 0;
+  padding: 0.4rem 0.8rem;
+  border: 1px solid var(--dark-rule);
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(6px);
+  font-family: var(--font-display);
+  font-size: var(--fs-xs);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--dark-muted);
+  cursor: pointer;
+  transition:
+    color var(--dur) var(--ease),
+    border-color var(--dur) var(--ease);
+}
+
+.cosmos__action:hover {
+  color: var(--dark-ink);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.cosmos__action:focus-visible {
+  outline: 2px solid var(--accent-bright);
+  outline-offset: var(--focus-offset);
+}
+
+.cosmos__actionDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent-bright);
+}
+
+.cosmos__actionHint {
+  text-transform: none;
+  letter-spacing: 0;
+  opacity: 0.7;
+}
+
+/* Below the hero's stacking breakpoint the orb is centred, so the drawing is
+   too, and the instruments stack rather than crowd the width. */
+@media (max-width: 62rem) {
+  .cosmos__drawing {
+    top: auto;
+    right: 0;
+    bottom: 3%;
+    left: 0;
+    width: 100%;
+    height: 62%;
+  }
+
+  .cosmos__actionHint {
+    display: none;
+  }
+}
+

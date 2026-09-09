@@ -23,10 +23,11 @@
       content="Full-stack developer building web software in Go, Ruby on Rails, Laravel and React, with QA and delivery experience and current work on a BIM-based construction technology platform."
     />
     <meta property="og:url" content="https://roandino.dev/" />
-    <meta property="og:image" content="https://roandino.dev/og.png" />
+    <meta property="og:image" content="https://roandino.dev/og.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Roan Dino — full-stack developer. The RD monogram above an axonometric line drawing of a structural frame." />
+    <meta property="og:image:alt" content="The roandino.dev homepage: the name Roan Dino and the line “Building software, systems, and interactive experiences” set over a dark field of drifting blue shards orbiting a lit sphere." />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Roan Dino — Full-stack developer" />
@@ -34,7 +35,7 @@
       name="twitter:description"
       content="Full-stack developer building software, systems, and interactive experiences."
     />
-    <meta name="twitter:image" content="https://roandino.dev/og.png" />
+    <meta name="twitter:image" content="https://roandino.dev/og.jpg" />
 
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -53,6 +54,21 @@
     <noscript>
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100,400;100,500;100,600;112,500;112,600&amp;family=Source+Serif+4:ital,opsz,wght@0,8..60,400;1,8..60,400&amp;display=swap" />
     </noscript>
+
+    <!-- Arms the scroll-reveal system before the first paint, so nothing is
+         hidden for a reader without JavaScript and nothing flashes in for a
+         reader with it. The timeout is a failsafe: if the bundle never runs,
+         the `js` class comes back off and the prerendered page stands as it
+         is. -->
+    <script>
+      (function () {
+        var root = document.documentElement;
+        root.classList.add('js');
+        setTimeout(function () {
+          if (!root.hasAttribute('data-motion')) root.classList.remove('js');
+        }, 4000);
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

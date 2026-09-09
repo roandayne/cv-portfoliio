@@ -1,0 +1,461 @@
+/* --- Motion ------------------------------------------------------------
+   One scroll-reveal system for the whole site, plus the hover and
+   scroll-linked detail that goes with it.
+
+   Everything here is gated behind `.js` on <html>, set by an inline script in
+   index.html before first paint. The prerendered HTML is therefore fully
+   visible without JavaScript — nothing is hidden that only a script can bring
+   back — and there is no flash of settled content before the reveal arms.
+
+   Two attributes drive it, both read by src/useMotion.js:
+     data-reveal[="variant"]  this element reveals when it scrolls into view
+     data-reveal-group        this element's children reveal, in sequence
+
+   Variants: up (default), fade, text, left, right, rise, media, cards. */
+
+:root {
+  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.4, 0.64, 1);
+
+  --reveal-dur: 880ms;
+  --reveal-shift: 1.75rem;
+}
+
+/* --- The reveal ------------------------------------------------------ */
+
+.js [data-reveal],
+.js [data-reveal-group] > * {
+  opacity: 0;
+  transform: translate3d(0, var(--reveal-shift), 0);
+  transition:
+    opacity var(--reveal-dur) var(--ease-out-quint) var(--reveal-delay, 0ms),
+    transform var(--reveal-dur) var(--ease-out-quint) var(--reveal-delay, 0ms),
+    filter var(--reveal-dur) var(--ease-out-quint) var(--reveal-delay, 0ms),
+    clip-path calc(var(--reveal-dur) * 1.3) var(--ease-out-expo) var(--reveal-delay, 0ms);
+}
+
+.js [data-reveal].is-in,
+.js [data-reveal-group].is-in > * {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
+/* Variants ------------------------------------------------------------- */
+
+.js [data-reveal='fade'] {
+  transform: none;
+}
+
+/* Headings and lede copy resolve out of a blur: the shift alone reads as a
+   slide, the blur makes it read as focus. */
+.js [data-reveal='text'],
+.js [data-reveal-group='text'] > * {
+  filter: blur(7px);
+  --reveal-shift: 1.1rem;
+}
+
+.js [data-reveal='left'] {
+  transform: translate3d(calc(var(--reveal-shift) * -1), 0, 0);
+}
+
+.js [data-reveal='right'] {
+  transform: translate3d(var(--reveal-shift), 0, 0);
+}
+
+/* A single-element line mask: the type rises out of its own box. No wrapper
+   span needed — the inset clip is the mask, and the negative edges keep
+   ascenders and descenders from being shaved once it has settled. */
+.js [data-reveal='rise'] {
+  opacity: 1;
+  clip-path: inset(-0.25em 0 100% 0);
+  transform: translate3d(0, 0.4em, 0);
+}
+
+.js [data-reveal='rise'].is-in {
+  clip-path: inset(-0.25em 0 -0.25em 0);
+}
+
+/* Imagery and diagrams wipe up while the picture inside settles back to
+   scale — the plate fills, rather than sliding in as a block. */
+.js [data-reveal='media'] {
+  opacity: 1;
+  transform: none;
+  clip-path: inset(0 0 100% 0 round var(--radius-lg));
+}
+
+.js [data-reveal='media'].is-in {
+  clip-path: inset(-1px round var(--radius-lg));
+}
+
+.js [data-reveal='media'] :is(img, svg) {
+  transform: scale(1.07);
+  transition: transform calc(var(--reveal-dur) * 1.5) var(--ease-out-expo);
+}
+
+.js [data-reveal='media'].is-in :is(img, svg) {
+  transform: none;
+}
+
+/* Cards arrive slightly small as well as low, which reads as depth across a
+   row of them. */
+.js [data-reveal-group='cards'] > * {
+  transform: translate3d(0, var(--reveal-shift), 0) scale(0.975);
+}
+
+/* --- Rules that draw themselves --------------------------------------
+   Hairlines are the site's structure, so they arrive as strokes rather than
+   appearing whole: each is re-cut as a scaled pseudo-element. */
+
+.js .eyebrow__rule {
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 900ms var(--ease-out-quint) 120ms;
+}
+
+.js .is-in .eyebrow__rule {
+  transform: none;
+}
+
+.js .focus__grid > li {
+  position: relative;
+  border-left-color: transparent;
+}
+
+.js .focus__grid > li::before {
+  content: '';
+  position: absolute;
+  left: -1px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--rule);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 900ms var(--ease-out-quint) var(--reveal-delay, 0ms);
+}
+
+.js .focus__grid.is-in > li::before {
+  transform: none;
+}
+
+.js .qa__item {
+  position: relative;
+  border-top-color: transparent;
+}
+
+.js .qa__item::before {
+  content: '';
+  position: absolute;
+  inset: -1px 0 auto 0;
+  height: 1px;
+  background: var(--rule);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 1000ms var(--ease-out-quint) var(--reveal-delay, 0ms);
+}
+
+.js .qa.is-in .qa__item::before {
+  transform: none;
+}
+
+/* --- Hero entrance ----------------------------------------------------
+   The hero is above the fold, so it plays on load rather than on scroll. One
+   sequence, each part a beat behind the last. */
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 1.5rem, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes word-rise {
+  from {
+    transform: translate3d(0, 108%, 0);
+  }
+  to {
+    transform: none;
+  }
+}
+
+.js .hero__eyebrow,
+.js .hero__lede,
+.js .hero__support,
+.js .hero .btn-row,
+.js .marks {
+  animation: rise-in 900ms var(--ease-out-quint) both;
+}
+
+.js .hero__eyebrow {
+  animation-delay: 60ms;
+}
+
+.js .hero__lede {
+  animation-delay: 420ms;
+}
+
+.js .hero__support {
+  animation-delay: 540ms;
+}
+
+.js .hero .btn-row {
+  animation-delay: 640ms;
+}
+
+.js .marks {
+  animation-delay: 740ms;
+}
+
+/* The marks come in one at a time under the rule. */
+.js .marks__item {
+  animation: rise-in 700ms var(--ease-out-quint) both;
+  animation-delay: calc(820ms + var(--i, 0) * 60ms);
+}
+
+/* --- Split type --------------------------------------------------------
+   Words rise out of a mask. The container carries the accessible name, so the
+   per-word spans stay hidden from assistive technology. */
+
+.split {
+  display: block;
+}
+
+.split__word {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  /* Room for descenders inside the mask, taken back off the layout. */
+  padding-bottom: 0.14em;
+  margin-bottom: -0.14em;
+  margin-right: 0.22em;
+}
+
+.js .split__inner {
+  display: inline-block;
+  animation: word-rise 1100ms var(--ease-out-expo) both;
+  animation-delay: var(--word-delay, 0ms);
+}
+
+/* --- Scroll-linked ----------------------------------------------------
+   Progressive enhancement: browsers with scroll-driven animations get a
+   reading-progress rule and a little parallax. Everywhere else, nothing is
+   drawn and nothing is missed. */
+
+.nav__progress {
+  display: none;
+}
+
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .nav__progress {
+      display: block;
+      position: absolute;
+      inset: auto 0 -1px 0;
+      height: 2px;
+      overflow: hidden;
+    }
+
+    .nav__progress i {
+      display: block;
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), var(--accent-bright));
+      transform-origin: 0 50%;
+      animation: progress-x linear both;
+      animation-timeline: scroll(root block);
+    }
+
+    @keyframes progress-x {
+      from {
+        transform: scaleX(0);
+      }
+      to {
+        transform: scaleX(1);
+      }
+    }
+
+    /* The screenshot drifts against the scroll, so the band has depth rather
+       than moving as one flat plane. */
+    .js .feature__visual {
+      animation: drift-y linear both;
+      animation-timeline: view();
+      animation-range: entry 0% exit 100%;
+    }
+
+    @keyframes drift-y {
+      from {
+        transform: translate3d(0, 2.25rem, 0);
+      }
+      to {
+        transform: translate3d(0, -2.25rem, 0);
+      }
+    }
+  }
+}
+
+/* --- Hover detail ------------------------------------------------------ */
+
+/* The lift is a `translate`, not a `transform`: the reveal owns `transform`,
+   and the two would otherwise overwrite each other. */
+.btn:hover {
+  translate: 0 -2px;
+}
+
+/* A light sweeps across the button on hover. */
+.btn {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    100deg,
+    transparent 20%,
+    rgba(255, 255, 255, 0.28) 50%,
+    transparent 80%
+  );
+  transform: translateX(-100%);
+  transition: transform 700ms var(--ease-out-quint);
+}
+
+.btn:hover::after {
+  transform: translateX(100%);
+}
+
+/* On the pale buttons a white sweep would be invisible, so it inverts. */
+.btn--light::after {
+  background: linear-gradient(100deg, transparent 20%, rgba(0, 0, 0, 0.09) 50%, transparent 80%);
+}
+
+.btn--line::after,
+.btn--ghost::after {
+  background: linear-gradient(
+    100deg,
+    transparent 20%,
+    color-mix(in srgb, currentColor 12%, transparent) 50%,
+    transparent 80%
+  );
+}
+
+/* Project cards: a cursor-tracked highlight, set by src/useMotion.js. Falls back
+   to a static top-left glow before the pointer has ever moved. */
+.project {
+  position: relative;
+  overflow: hidden;
+  transition:
+    border-color var(--dur) var(--ease),
+    translate var(--dur) var(--ease),
+    box-shadow var(--dur) var(--ease);
+}
+
+.project::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    18rem 18rem at var(--mx, 50%) var(--my, 0%),
+    rgba(86, 168, 255, 0.16),
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 320ms var(--ease);
+  pointer-events: none;
+}
+
+.project > * {
+  position: relative;
+}
+
+.project:hover {
+  translate: 0 -4px;
+  box-shadow: 0 18px 40px -28px rgba(0, 0, 0, 0.65);
+}
+
+.project:hover::before {
+  opacity: 1;
+}
+
+/* The experience rows tint from the left as the pointer crosses them. */
+.cv__role > summary {
+  position: relative;
+  transition: background-size 420ms var(--ease-out-quint);
+  background-image: linear-gradient(90deg, var(--paper-sunk), transparent);
+  background-repeat: no-repeat;
+  background-size: 0% 100%;
+}
+
+.cv__role > summary:hover {
+  background-size: 100% 100%;
+}
+
+.cv__role[open] > .cv__detail {
+  animation: rise-in 420ms var(--ease-out-quint) both;
+}
+
+.marks__glyph {
+  transition:
+    opacity var(--dur) var(--ease),
+    translate var(--dur) var(--ease-spring),
+    scale var(--dur) var(--ease-spring);
+}
+
+.marks__item:hover .marks__glyph {
+  translate: 0 -3px;
+  scale: 1.12;
+}
+
+/* --- Sticky section heads ---------------------------------------------
+   On wide screens the label column holds while its content scrolls past. */
+
+@media (min-width: 62.0625rem) {
+  .focus__head,
+  .about > div:first-child {
+    position: sticky;
+    top: 6rem;
+    align-self: start;
+  }
+}
+
+/* --- Reduced motion ----------------------------------------------------
+   Nothing moves, nothing is hidden: every reveal state resolves to its
+   settled value and the scroll-linked layers are switched off above. */
+
+@media (prefers-reduced-motion: reduce) {
+  .js [data-reveal],
+  .js [data-reveal-group] > *,
+  .js [data-reveal='media'] :is(img, svg),
+  .js .split__inner,
+  .js .eyebrow__rule,
+  .js .focus__grid > li::before,
+  .js .qa__item::before {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    clip-path: none;
+    animation: none;
+  }
+
+  .js .hero__eyebrow,
+  .js .hero__lede,
+  .js .hero__support,
+  .js .hero .btn-row,
+  .js .marks,
+  .js .marks__item,
+  .js .cv__role[open] > .cv__detail {
+    animation: none;
+  }
+
+  .btn::after {
+    display: none;
+  }
+}

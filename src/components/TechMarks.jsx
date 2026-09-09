@@ -14,8 +14,9 @@ import { techMarks } from '../data/techMarks';
  */
 const TechMarks = () => (
   <ul className="marks" aria-label="Core stack">
-    {techMarks.map((mark) => (
-      <li className="marks__item" key={mark.title}>
+    {techMarks.map((mark, i) => (
+      // The index is the beat this mark comes in on; the timing is in motion.css.
+      <li className="marks__item" key={mark.title} style={{ '--i': i }}>
         <svg
           className="marks__glyph"
           viewBox="0 0 24 24"

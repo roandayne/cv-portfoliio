@@ -1,4 +1,67 @@
+# roandino.dev
+
 User-agent: *
+Allow: /
+
+# Answer engines and AI crawlers are allowed explicitly, not just by the
+# wildcard above. This site exists to be found and quoted, and an omission
+# here reads to some crawlers as an omission rather than as consent.
+
+# OpenAI — ChatGPT browsing, ChatGPT search, and training
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+# Anthropic — Claude
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+# Google — AI Overviews and Gemini grounding
+User-agent: Google-Extended
+Allow: /
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+# Microsoft Copilot
+User-agent: bingbot
+Allow: /
+
+# Apple Intelligence
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# Common Crawl — the corpus behind many downstream models
+User-agent: CCBot
+Allow: /
+
+# Meta
+User-agent: meta-externalagent
+Allow: /
+
+# Amazon
+User-agent: Amazonbot
 Allow: /
 
 Sitemap: https://roandino.dev/sitemap.xml

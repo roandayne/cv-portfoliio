@@ -290,12 +290,10 @@
   border: 1px solid transparent;
   border-radius: var(--radius);
   padding: var(--s-5);
-  transition: border-color var(--dur) var(--ease), transform var(--dur) var(--ease);
 }
 
 .project:hover {
   border-color: rgba(120, 180, 235, 0.4);
-  transform: translateY(-3px);
 }
 
 .project__period {

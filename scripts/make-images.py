@@ -1,8 +1,11 @@
-"""Generates the Open Graph image and the apple-touch icon.
+"""Generates the drawn social card and the apple-touch icon.
 
-Both are drawn from the same axonometric frame the site uses, so the social
-card matches the page it links to, and both carry the monogram from
-make-logo.py. Run with: python3 scripts/make-images.py
+Both are drawn from the same axonometric frame the site uses and carry the
+monogram from make-logo.py. Run with: python3 scripts/make-images.py
+
+Note: the live social card is public/og.jpg, a capture of the homepage hero.
+make_og() writes the drawn alternative to public/og.png, which nothing
+references. Point the og:image tags in index.html back at it to use it again.
 """
 
 import importlib.util

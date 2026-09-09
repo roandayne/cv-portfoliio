@@ -21,6 +21,26 @@ export const person = {
   since: 2019,
 };
 
+/**
+ * Roan's employer. The website address is the one she maintains, named in her
+ * resume; nothing here is drawn from the platform itself, which is access-
+ * controlled.
+ */
+export const employer = {
+  name: 'Strategic Planning Co.',
+  url: 'https://strategicplanning.nz',
+  location: 'New Zealand',
+};
+
+/**
+ * One-paragraph biography. Every clause restates a fact already recorded in
+ * this file — it is the prose form of the record, not an addition to it.
+ * Used by the About page, the Person schema, and /llms.txt so all three say
+ * the same thing.
+ */
+export const bio =
+  'Roan Dino is a web developer based in Tagaytay City, Philippines, with seven years across development, quality assurance, and Agile delivery. She builds and maintains web applications end to end \u2014 frontend, backend, and APIs \u2014 and has shipped production systems in construction technology, fintech, blockchain, education, and e-commerce. She is currently a web developer at Strategic Planning Co. in New Zealand, working on StratApps, a construction-intelligence SaaS suite.';
+
 export const hero = {
   eyebrow: 'Web developer · Project manager · QA engineer',
   lede: 'Building software, systems, and interactive experiences.',

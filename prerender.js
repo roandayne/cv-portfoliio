@@ -14,7 +14,7 @@ import { fileURLToPath } from 'node:url';
 const root = dirname(fileURLToPath(import.meta.url));
 const distDir = join(root, 'dist');
 
-const { render, ROUTE_PATHS, metaFor, SITE_URL } = await import(
+const { render, ROUTE_PATHS, metaFor, SITE_URL, llmsText } = await import(
   join(root, 'dist-ssr', 'entry-server.js')
 );
 
@@ -57,8 +57,15 @@ for (const route of routes) {
   html = replaceMeta(html, 'name', 'twitter:title', meta.title);
   html = replaceMeta(html, 'name', 'twitter:description', meta.description);
 
-  if (route !== '/') {
-    html = html.replace(/<meta property="og:type"[\s\S]*?\/?>/i, '<meta property="og:type" content="article" />');
+  if (meta.ogType) {
+    html = html.replace(
+      /<meta property="og:type"[\s\S]*?\/?>/i,
+      `<meta property="og:type" content="${attr(meta.ogType)}" />`,
+    );
+  }
+
+  if (meta.noindex) {
+    html = replaceMeta(html, 'name', 'robots', 'noindex, follow');
   }
 
   if (meta.jsonLd) {
@@ -101,3 +108,7 @@ ${routes
 
 await writeFile(join(distDir, 'sitemap.xml'), sitemap, 'utf8');
 console.log('wrote sitemap.xml');
+
+// /llms.txt — the same record as the pages, in plain text, for answer engines.
+await writeFile(join(distDir, 'llms.txt'), llmsText(), 'utf8');
+console.log('wrote llms.txt');

@@ -1,0 +1,140 @@
+/* --- About / résumé ----------------------------------------------------
+   The page reuses the homepage's bands, eyebrows, chips and focus grid.
+   Only the résumé's own two shapes are defined here: the masthead, and the
+   two-column record used for roles and education. */
+
+.resume__head {
+  padding-top: clamp(2.5rem, 5vw, 4rem);
+}
+
+.resume__name {
+  font-family: var(--font-display);
+  font-size: var(--fs-2xl);
+  font-weight: 600;
+  letter-spacing: var(--tracking-tight);
+  line-height: var(--lh-tight);
+}
+
+.resume__role {
+  margin-top: var(--s-2);
+  font-family: var(--font-display);
+  font-size: var(--fs-base);
+  color: var(--ink-muted);
+}
+
+.resume__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--s-2) var(--s-4);
+  margin-top: var(--s-4);
+  padding-top: var(--s-4);
+  border-top: 1px solid var(--rule-faint);
+  font-family: var(--font-display);
+  font-size: var(--fs-sm);
+  color: var(--ink-muted);
+}
+
+/* A hairline between each fact, in place of a bullet. */
+.resume__meta > li + li {
+  padding-left: var(--s-4);
+  border-left: 1px solid var(--rule);
+}
+
+.resume__bio {
+  max-width: var(--measure);
+  margin-top: var(--s-5);
+  font-size: var(--fs-md);
+  line-height: var(--lh-prose);
+}
+
+.resume__head .btn-row {
+  margin-top: var(--s-6);
+}
+
+.resume__h2 {
+  font-family: var(--font-display);
+  font-size: var(--fs-xl);
+  font-weight: 600;
+  letter-spacing: var(--tracking-tight);
+  margin-bottom: var(--s-6);
+}
+
+/* --- Record list -------------------------------------------------------
+   Period in a fixed left column, the entry itself in the measure beside it.
+   The columns collapse to a stack on narrow screens. */
+
+.rec {
+  border-top: 1px solid var(--rule);
+}
+
+.rec__item {
+  display: grid;
+  grid-template-columns: 12rem minmax(0, 1fr);
+  gap: var(--s-3) var(--s-5);
+  padding-block: var(--s-6);
+  border-bottom: 1px solid var(--rule-faint);
+}
+
+.rec--tight .rec__item {
+  padding-block: var(--s-4);
+}
+
+.rec__period {
+  font-family: var(--font-display);
+  font-size: var(--fs-sm);
+  color: var(--ink-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.rec__now {
+  display: inline-block;
+  margin-top: var(--s-2);
+  padding: 0.15rem 0.55rem;
+  border-radius: var(--radius-pill);
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-family: var(--font-display);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}
+
+.rec__body {
+  max-width: var(--measure);
+}
+
+.rec__role {
+  font-family: var(--font-display);
+  font-size: var(--fs-md);
+  font-weight: 600;
+  letter-spacing: var(--tracking-tight);
+}
+
+.rec__org {
+  margin-top: var(--s-1);
+  font-family: var(--font-display);
+  font-size: var(--fs-sm);
+  color: var(--ink-muted);
+}
+
+.rec__body .bullets {
+  margin-top: var(--s-4);
+}
+
+.rec__body .chips {
+  margin-top: var(--s-4);
+}
+
+@media (max-width: 46rem) {
+  .rec__item {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--s-2);
+  }
+
+  .resume__meta > li + li {
+    padding-left: 0;
+    border-left: 0;
+  }
+}

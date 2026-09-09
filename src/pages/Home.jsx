@@ -1,7 +1,11 @@
+import Contact from '../components/Contact';
 import Cosmos from '../components/Cosmos/Cosmos';
+import Eyebrow from '../components/Eyebrow';
+import SplitText from '../components/SplitText';
+import Tags from '../components/Tags';
 import TechMarks from '../components/TechMarks';
 import { PetPortalDiagram } from '../components/Visuals';
-import { DownloadIcon, ExternalIcon, GitIcon, LinkedInIcon, MailIcon } from '../components/Icons';
+import { ExternalIcon } from '../components/Icons';
 import {
   about,
   answers,
@@ -16,21 +20,6 @@ import {
 } from '../data/site';
 import './home.css';
 
-const Tags = ({ items, className = '' }) => (
-  <ul className={`chips ${className}`.trim()}>
-    {items.map((item) => (
-      <li key={item}>{item}</li>
-    ))}
-  </ul>
-);
-
-const Eyebrow = ({ children }) => (
-  <p className="eyebrow">
-    <span>{children}</span>
-    <span className="eyebrow__rule" aria-hidden="true" />
-  </p>
-);
-
 const Home = () => (
   <>
     <section className="hero" aria-labelledby="hero-title">
@@ -39,7 +28,9 @@ const Home = () => (
         <div className="hero__text">
           <h1 className="hero__title" id="hero-title">
             <span className="hero__eyebrow">{hero.eyebrow}</span>
-            <span className="hero__name">{person.name}</span>
+            <span className="hero__name">
+              <SplitText text={person.name} delay={120} step={110} />
+            </span>
             <span className="hero__lede">{hero.lede}</span>
           </h1>
           <p className="hero__support">{hero.supporting}</p>
@@ -61,7 +52,7 @@ const Home = () => (
 
     <section className="band" id="current">
       <div className="page feature">
-        <div className="feature__text">
+        <div className="feature__text" data-reveal-group data-reveal-step="70">
           <Eyebrow>Currently building</Eyebrow>
           <h2 className="feature__title">{current.name}</h2>
           <p className="feature__org">
@@ -90,7 +81,7 @@ const Home = () => (
             </a>
           </p>
         </div>
-        <figure className="feature__visual">
+        <figure className="feature__visual" data-reveal="media">
           <img
             className="shot"
             src="/images/stratapps-iboq.webp"
@@ -112,9 +103,9 @@ const Home = () => (
         {/* One list, newest first. No featured tier and no "earlier" tier:
             every project carries the same fields and the same weight, and the
             period is what orders them. */}
-        <ul className="projects">
+        <ul className="projects" data-reveal-group="cards" data-reveal-step="120">
           {projects.map((project) => (
-            <li className="project" key={project.id}>
+            <li className="project" key={project.id} data-spotlight>
               <p className="project__period">{project.period}</p>
               <h3 className="project__title">{project.name}</h3>
               <p className="project__org">{project.org}</p>
@@ -136,7 +127,7 @@ const Home = () => (
         <div className="dev__text">
           <Eyebrow>In development</Eyebrow>
           <h2 className="u-sr">In development</h2>
-          <ul className="dev__cards">
+          <ul className="dev__cards" data-reveal-group="cards" data-reveal-step="120">
             {inDevelopment.map((product) => (
               <li className="card" key={product.slug}>
                 <p className="card__status">Not launched</p>
@@ -146,12 +137,12 @@ const Home = () => (
               </li>
             ))}
           </ul>
-          <p className="caption">
+          <p className="caption" data-reveal="fade">
             Both are in development. The areas listed describe intended scope, not shipped
             functionality.
           </p>
         </div>
-        <figure className="dev__visual">
+        <figure className="dev__visual" data-reveal="media">
           <PetPortalDiagram />
           <figcaption className="caption">Pet Portal — concept wireframe.</figcaption>
         </figure>
@@ -161,10 +152,14 @@ const Home = () => (
     <section className="band band--alt" id="focus">
       <div className="page focus">
         <div className="focus__head">
-          <h2 className="focus__title">Technical focus</h2>
-          <p className="focus__sub">The tools and technologies I work with.</p>
+          <h2 className="focus__title" data-reveal="rise">
+            Technical focus
+          </h2>
+          <p className="focus__sub" data-reveal="fade">
+            The tools and technologies I work with.
+          </p>
         </div>
-        <ul className="focus__grid">
+        <ul className="focus__grid" data-reveal-group data-reveal-step="70">
           {technicalFocus.map((group) => (
             <li key={group.area}>
               <h3 className="focus__area">{group.area}</h3>
@@ -179,7 +174,7 @@ const Home = () => (
       <div className="page">
         <Eyebrow>Experience</Eyebrow>
         <h2 className="u-sr">Experience</h2>
-        <ol className="cv">
+        <ol className="cv" data-reveal-group data-reveal-step="55">
           {experience.map((role) => (
             <li key={`${role.org}-${role.period}`}>
               <details className="cv__role">
@@ -208,7 +203,7 @@ const Home = () => (
             </li>
           ))}
         </ol>
-        <p className="cv__edu">
+        <p className="cv__edu" data-reveal="fade">
           {education.map((item) => `${item.qualification}, ${item.institution} (${item.period})`).join('  ·  ')}
         </p>
       </div>
@@ -218,9 +213,11 @@ const Home = () => (
       <div className="page about">
         <div>
           <Eyebrow>Approach</Eyebrow>
-          <h2 className="about__title">How I work</h2>
+          <h2 className="about__title" data-reveal="rise">
+            How I work
+          </h2>
         </div>
-        <ol className="approach">
+        <ol className="approach" data-reveal-group="text" data-reveal-step="90">
           {about.map((point) => (
             <li key={point.slice(0, 24)}>{point}</li>
           ))}
@@ -232,7 +229,7 @@ const Home = () => (
       <div className="page">
         <Eyebrow>In brief</Eyebrow>
         <h2 className="u-sr">In brief</h2>
-        <dl className="qa">
+        <dl className="qa" data-reveal-group data-reveal-step="70">
           {answers.map((item) => (
             <div className="qa__item" key={item.q}>
               <dt>{item.q}</dt>
@@ -243,66 +240,7 @@ const Home = () => (
       </div>
     </section>
 
-    <section className="contact" id="contact">
-      <div className="page contact__inner">
-        <div className="contact__lead">
-          <h2 className="contact__title">Have a project or opportunity in mind?</h2>
-          <p>Open to development, QA, and project management.</p>
-          {/* The address stays visible so it can be read and copied, not only
-              clicked. */}
-          <p className="contact__address">{person.email}</p>
-        </div>
-        {/* Reuses the hero's secondary button so the two match. Each carries a
-            visible label; aria-label adds the destination for screen readers
-            and keeps the visible text inside the accessible name. */}
-        <ul className="contact__links">
-          <li>
-            <a
-              className="btn btn--ghost contact__btn"
-              href={`mailto:${person.email}`}
-              aria-label={`Email ${person.email}`}
-            >
-              <MailIcon />
-              Email
-            </a>
-          </li>
-          <li>
-            <a
-              className="btn btn--ghost contact__btn"
-              href={person.linkedin}
-              rel="me noopener noreferrer"
-              target="_blank"
-              aria-label="LinkedIn profile, opens in a new tab"
-            >
-              <LinkedInIcon />
-              LinkedIn
-            </a>
-          </li>
-          <li>
-            <a
-              className="btn btn--ghost contact__btn"
-              href={person.github}
-              rel="me noopener noreferrer"
-              target="_blank"
-              aria-label="GitHub profile, opens in a new tab"
-            >
-              <GitIcon />
-              GitHub
-            </a>
-          </li>
-          <li>
-            <a
-              className="btn btn--ghost contact__btn"
-              href={person.resume}
-              aria-label="Résumé, download PDF"
-            >
-              <DownloadIcon />
-              Résumé
-            </a>
-          </li>
-        </ul>
-      </div>
-    </section>
+    <Contact />
   </>
 );
 

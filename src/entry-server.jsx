@@ -7,6 +7,7 @@ import './styles/base.css';
 export { ROUTE_PATHS } from './meta';
 export { metaFor } from './meta';
 export { SITE_URL } from './data/site';
+export { llmsText } from './llms';
 
 export function render(url) {
   return renderToString(

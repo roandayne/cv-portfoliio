@@ -52,5 +52,13 @@ export default function useMeta() {
       el.setAttribute('property', 'og:url');
       return el;
     }, canonical);
+    // A route reached by client-side navigation has to correct the robots
+    // directive too: the prerendered / carries "index, follow", and landing
+    // on an unknown path from there must not leave that in place.
+    setTag('meta[name="robots"]', () => {
+      const el = document.createElement('meta');
+      el.setAttribute('name', 'robots');
+      return el;
+    }, meta.noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large');
   }, [pathname]);
 }

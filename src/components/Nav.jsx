@@ -4,10 +4,12 @@ import { person } from '../data/site';
 import Logo from './Logo';
 import './nav.css';
 
+/* 'About' points at the résumé page; the rest are homepage anchors. A `to`
+   entry is routed, an `href` entry is a plain jump. */
 const LINKS = [
   { href: '/#work', label: 'Work' },
   { href: '/#experience', label: 'Experience' },
-  { href: '/#about', label: 'About' },
+  { to: '/about', label: 'About' },
   { href: '/#contact', label: 'Contact' },
 ];
 
@@ -27,10 +29,9 @@ const Nav = () => {
     const hero = document.querySelector('.hero');
     if (!hero) return undefined;
 
-    const observer = new IntersectionObserver(
-      (entries) => setOnHero(entries[0].intersectionRatio > 0.12),
-      { threshold: [0, 0.12, 0.5] },
-    );
+    const observer = new IntersectionObserver((entries) => setOnHero(entries[0].intersectionRatio > 0.12), {
+      threshold: [0, 0.12, 0.5],
+    });
     observer.observe(hero);
     return () => observer.disconnect();
   }, [isHome]);
@@ -45,8 +46,14 @@ const Nav = () => {
         <nav aria-label="Sections">
           <ul className="nav__links">
             {LINKS.map((link) => (
-              <li key={link.href}>
-                <a href={link.href}>{link.label}</a>
+              <li key={link.to || link.href}>
+                {link.to ? (
+                  <Link to={link.to} aria-current={pathname === link.to ? 'page' : undefined}>
+                    {link.label}
+                  </Link>
+                ) : (
+                  <a href={link.href}>{link.label}</a>
+                )}
               </li>
             ))}
           </ul>
@@ -54,6 +61,12 @@ const Nav = () => {
         <a className="nav__cta" href={`mailto:${person.email}`}>
           Get in touch
         </a>
+      </div>
+      {/* Reading progress. Drawn entirely by a scroll-driven animation in
+          styles/motion.css — no scroll listener, and nothing rendered at all in
+          browsers that cannot drive it. */}
+      <div className="nav__progress" aria-hidden="true">
+        <i />
       </div>
     </header>
   );

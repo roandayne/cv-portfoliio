@@ -1,4 +1,5 @@
 @import './tokens.css';
+@import './motion.css';
 
 /* --- Reset ---------------------------------------------------------- */
 
@@ -248,12 +249,11 @@ a:hover {
   cursor: pointer;
   white-space: nowrap;
   transition: background var(--dur) var(--ease), color var(--dur) var(--ease),
-    border-color var(--dur) var(--ease), transform var(--dur) var(--ease);
+    border-color var(--dur) var(--ease), translate var(--dur) var(--ease);
 }
 
-.btn:hover {
-  transform: translateY(-1px);
-}
+/* The lift and the sweep are in styles/motion.css, with the rest of the
+   hover detail. */
 
 /* Solid on light surfaces. */
 .btn--dark {
@@ -290,6 +290,18 @@ a:hover {
   border-color: var(--accent-bright);
   background: rgba(255, 255, 255, 0.07);
   color: var(--accent-bright);
+}
+
+/* Outlined on light surfaces. The ghost variant above only reads on the dark
+   hero, so a light band needs its own outline. */
+.btn--line {
+  border-color: var(--rule);
+  color: var(--ink);
+}
+
+.btn--line:hover {
+  border-color: var(--ink);
+  color: var(--accent);
 }
 
 .btn-row {

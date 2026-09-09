@@ -143,6 +143,24 @@ def make_icon(path="public/apple-touch-icon.png", size=180):
     print("wrote", path)
 
 
+def make_favicon(path="public/favicon.ico"):
+    """A raster favicon beside favicon.svg.
+
+    Google's favicon crawler falls back to /favicon.ico at the site root, and
+    an HTML 404 there leaves it guessing. The .ico carries the sizes Google
+    and the browsers actually ask for.
+    """
+    sizes = (16, 32, 48, 64, 128, 180)
+    largest = max(sizes)
+    img = Image.new("RGB", (largest, largest), DARK)
+    width = largest * 24 / 32                   # same inset as the touch icon
+    height = width * make_logo.H / make_logo.W
+    draw_mark(img, (largest - width) / 2, (largest - height) / 2, height, DARK_INK)
+    img.save(path, sizes=[(s, s) for s in sizes])
+    print("wrote", path)
+
+
 if __name__ == "__main__":
     make_og()
     make_icon()
+    make_favicon()

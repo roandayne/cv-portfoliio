@@ -17,7 +17,7 @@ const root = dirname(dirname(fileURLToPath(import.meta.url)));
 const site = await import(pathToFileURL(join(root, 'src/data/site.js')).href);
 const logo = await import(pathToFileURL(join(root, 'src/data/logo.js')).href);
 
-const { person, experience, education, technicalFocus } = site;
+const { SITE_URL, person, experience, education, technicalFocus } = site;
 
 // The same monogram the site carries, so the download is on her letterhead.
 const MARK = `<svg class="mark" viewBox="${logo.viewBox}" xmlns="http://www.w3.org/2000/svg">
@@ -29,8 +29,7 @@ const esc = (v) =>
 const PROFILE =
   'Software developer with 7+ years of experience spanning Golang, Python, Ruby on Rails, Laravel/PHP, ' +
   'React, React Native, Vue.js, and TypeScript. Comfortable operating across the full delivery ' +
-  'cycle — development, QA, and Agile project management — and has shipped production systems in ' +
-  'construction technology, fintech, blockchain, education, and e-commerce.';
+  'cycle — development, QA, and Agile project management.';
 
 const SKILLS = [
   ['Languages & Frameworks', 'Golang, Python, Ruby on Rails, Laravel/PHP, React, React Native, Vue.js, TypeScript'],
@@ -74,7 +73,7 @@ const html = `<!doctype html>
   <div>
     <h1>${esc(person.fullName.toUpperCase())}</h1>
     <p class="title">Web Developer &middot; Project Manager &middot; QA Engineer</p>
-    <p class="contact">${esc(person.location)} &nbsp;|&nbsp; ${esc(person.phone)} &nbsp;|&nbsp; ${esc(person.email)} &nbsp;|&nbsp; roandino.dev</p>
+    <p class="contact">${esc(person.location)} &nbsp;|&nbsp; ${esc(person.phone)} &nbsp;|&nbsp; ${esc(person.email)} &nbsp;|&nbsp; ${esc(SITE_URL)}</p>
   </div>
   ${MARK}
 </div>

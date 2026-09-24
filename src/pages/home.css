@@ -209,6 +209,10 @@
   max-width: 44ch;
 }
 
+.feature__text .chips {
+  margin-top: var(--s-4);
+}
+
 .feature__links {
   display: flex;
   flex-wrap: wrap;

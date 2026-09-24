@@ -1,7 +1,7 @@
 /**
  * Vendors the handful of brand marks the hero shows into src/data/techMarks.js.
  *
- * simple-icons carries several thousand icons; only these eight are used, so
+ * simple-icons carries several thousand icons; only these nine are used, so
  * their path data is extracted at author time rather than shipped as a runtime
  * dependency and left to tree shaking. Re-run after changing the list:
  *
@@ -18,6 +18,7 @@ const WANTED = [
   'siTypescript',
   'siVuedotjs',
   'siGo',
+  'siPython',
   'siRubyonrails',
   'siLaravel',
   'siPostgresql',

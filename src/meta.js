@@ -49,12 +49,14 @@ const PERSON_LD = {
   knowsAbout: [
     'Full-stack web development',
     'Golang',
+    'Python',
     'Ruby on Rails',
     'Laravel',
     'React',
     'React Native',
     'TypeScript',
     'PostgreSQL',
+    'MySQL',
     'Vue.js',
     'Quality assurance and software testing',
     'Agile project management',
@@ -116,9 +118,9 @@ function breadcrumb(name, path) {
 
 export const ROUTES = {
   '/': {
-    title: 'Roan Dino — Web Developer | Golang, React, TypeScript & BIM',
+    title: 'Roan Dino — Web Developer | Golang, Python, React, TypeScript & BIM',
     description:
-      'Roan Dino is a software developer with 7+ years across development, QA, and Agile delivery — Golang, Ruby on Rails, Laravel, React and TypeScript. Currently building StratApps, a construction-intelligence SaaS suite, at Strategic Planning Co.',
+      'Roan Dino is a software developer with 7+ years across development, QA, and Agile delivery — Golang, Python, Ruby on Rails, Laravel, React and TypeScript. Currently building StratApps, a construction-intelligence SaaS suite, at Strategic Planning Co.',
     ogType: 'profile',
     jsonLd: graph(
       PERSON_LD,

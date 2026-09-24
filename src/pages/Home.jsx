@@ -60,6 +60,7 @@ const Home = () => (
           </p>
           <p className="feature__summary">{current.summary}</p>
           <p className="feature__short">{current.short}</p>
+          <Tags items={current.tags} />
           <ul className="tools">
             {current.tools.map((tool) => (
               <li key={tool.name}>

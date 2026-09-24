@@ -88,17 +88,17 @@ const About = () => (
       <div className="page focus">
         <div className="focus__head">
           <h2 className="focus__title" id="about-focus" data-reveal="rise">
-            Technical focus
+            Tech stack
           </h2>
           <p className="focus__sub" data-reveal="fade">
-            The tools and technologies I work with.
+            Every language, framework, and tool I work with.
           </p>
         </div>
         <ul className="focus__grid" data-reveal-group data-reveal-step="70">
           {technicalFocus.map((group) => (
             <li key={group.area}>
               <h3 className="focus__area">{group.area}</h3>
-              <p className="focus__items">{group.items.join(' · ')}</p>
+              <Tags items={group.items} className="chips--small" />
             </li>
           ))}
         </ul>

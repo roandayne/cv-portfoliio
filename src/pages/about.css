@@ -127,6 +127,10 @@
   margin-top: var(--s-4);
 }
 
+.focus__grid .chips {
+  margin-top: var(--s-3);
+}
+
 @media (max-width: 46rem) {
   .rec__item {
     grid-template-columns: minmax(0, 1fr);

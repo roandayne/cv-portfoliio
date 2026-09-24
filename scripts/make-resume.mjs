@@ -27,14 +27,14 @@ const esc = (v) =>
   String(v).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
 const PROFILE =
-  'Software developer with 7+ years of experience spanning Golang, Ruby on Rails, Laravel/PHP, ' +
+  'Software developer with 7+ years of experience spanning Golang, Python, Ruby on Rails, Laravel/PHP, ' +
   'React, React Native, Vue.js, and TypeScript. Comfortable operating across the full delivery ' +
   'cycle — development, QA, and Agile project management — and has shipped production systems in ' +
   'construction technology, fintech, blockchain, education, and e-commerce.';
 
 const SKILLS = [
-  ['Languages & Frameworks', 'Golang, Ruby on Rails, Laravel/PHP, React, React Native, Vue.js, TypeScript'],
-  ['Systems & Infrastructure', 'gRPC, Microservices, NATS, Kafka, REST APIs'],
+  ['Languages & Frameworks', 'Golang, Python, Ruby on Rails, Laravel/PHP, React, React Native, Vue.js, TypeScript'],
+  ['Systems & Infrastructure', 'PostgreSQL, MySQL, gRPC, Microservices, NATS, Kafka, REST APIs'],
   ['Practices', 'Agile/Scrum project management, QA & test case design, code review, blockchain integrations'],
   ['Languages', 'English, Tagalog'],
 ];

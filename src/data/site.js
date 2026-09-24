@@ -67,7 +67,7 @@ export const current = {
     'A construction-intelligence SaaS suite used by contractors in New Zealand, Australia, and other markets.',
   short:
     'I develop and maintain the suite, build the company website, and build custom web applications for individual clients.',
-  tags: ['IFC / BIM', 'PostgreSQL', 'Go', 'React', 'Cloudflare Access'],
+  tags: ['IFC / BIM', 'PostgreSQL', 'Python', 'React', 'Cloudflare Access'],
   /** The tools in the suite, as named in Roan's resume. */
   tools: [
     { name: 'iBOQ', what: 'Bill-of-quantities generation' },
@@ -201,8 +201,8 @@ export const inDevelopment = [
 
 export const technicalFocus = [
   { area: 'Frontend', items: ['React', 'React Native', 'Vue.js', 'TypeScript'] },
-  { area: 'Backend', items: ['Golang', 'Ruby on Rails', 'Laravel', 'PHP'] },
-  { area: 'Data', items: ['PostgreSQL', 'Query debugging', 'Data investigation'] },
+  { area: 'Backend', items: ['Golang', 'Python', 'Ruby on Rails', 'Laravel', 'PHP'] },
+  { area: 'Data', items: ['PostgreSQL', 'MySQL', 'Query debugging', 'Data investigation'] },
   { area: 'Distributed systems', items: ['gRPC', 'Microservices', 'NATS', 'Kafka'] },
   { area: '3D and BIM', items: ['Three.js', 'WebGL', 'IFC', 'FRAG', 'BIM model viewing'] },
   { area: 'Quality', items: ['Test case design', 'Regression testing', 'Defect tracking', 'Code review'] },
@@ -222,7 +222,7 @@ export const experience = [
       'Builds and maintains the company website, strategicplanning.nz.',
       'Develops additional custom web applications for individual clients.',
     ],
-    stack: ['IFC / BIM', 'PostgreSQL', 'React'],
+    stack: ['IFC / BIM', 'PostgreSQL', 'Python', 'React'],
   },
   {
     role: 'Web Developer, Project Manager',
@@ -324,7 +324,7 @@ export const answers = [
   },
   {
     q: 'What technologies does Roan Dino use?',
-    a: 'Golang, Ruby on Rails, Laravel and PHP, React, React Native, Vue.js, and TypeScript, with PostgreSQL for data. She has also worked with gRPC, microservices, NATS, and Kafka, and with Three.js, WebGL, IFC, and FRAG for 3D and BIM.',
+    a: 'Golang, Python, Ruby on Rails, Laravel and PHP, React, React Native, Vue.js, and TypeScript, with PostgreSQL and MySQL for data. She has also worked with gRPC, microservices, NATS, and Kafka, and with Three.js, WebGL, IFC, and FRAG for 3D and BIM.',
   },
   {
     q: 'Does Roan Dino work with Three.js and 3D visualisation?',
